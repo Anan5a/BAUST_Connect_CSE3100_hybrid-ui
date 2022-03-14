@@ -1,0 +1,7 @@
+{
+  "name": "baust-connect-app",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

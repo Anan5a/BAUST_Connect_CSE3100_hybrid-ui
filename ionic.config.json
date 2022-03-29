@@ -1,5 +1,5 @@
 {
-  "name": "baust-connect-app",
+  "name": "BAUST Connect",
   "integrations": {
     "capacitor": {}
   },

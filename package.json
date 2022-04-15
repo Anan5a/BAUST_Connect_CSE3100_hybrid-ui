@@ -1,8 +1,8 @@
 {
-  "name": "BAUST Connect",
+  "name": "BAUSTian",
   "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "https://ionicframework.com/",
+  "author": "",
+  "homepage": "",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -27,6 +27,7 @@
     "@capacitor/status-bar": "^1.0.8",
     "@capacitor/storage": "^1.2.5",
     "@ionic/angular": "^6.0.0",
+    "@ionic/storage-angular": "^3.0.6",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",
     "zone.js": "~0.11.4"
@@ -64,5 +65,5 @@
     "ts-node": "~8.3.0",
     "typescript": "~4.4.4"
   },
-  "description": "An Ionic project"
+  "description": ""
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {GlobalConstant} from "../../../GlobalConstant";
 
 @Component({
   selector: 'app-homepage',
@@ -6,10 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./homepage.page.scss'],
 })
 export class HomepagePage implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
+  constructor() {
+  }
+  ngOnInit(): void {
   }
 
 }

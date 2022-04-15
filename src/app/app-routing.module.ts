@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import {AuthGuard} from "./guards/auth.guard";
+import {UnauthenticatedGuard} from "./guards/unauthenticated.guard";
 
 const routes: Routes = [
   {
@@ -17,7 +19,8 @@ const routes: Routes = [
   },*/
   {
     path: 'login',
-    loadChildren: () => import('./pages/user/login/login.module').then( m => m.LoginPageModule)
+    loadChildren: () => import('./pages/user/login/login.module').then( m => m.LoginPageModule),
+    canLoad:[UnauthenticatedGuard]
   },
   {
     path: 'intro',
@@ -25,19 +28,28 @@ const routes: Routes = [
   },
   {
     path: 'profile',
-    loadChildren: () => import('./pages/user/profile/profile.module').then( m => m.ProfilePageModule)
+    loadChildren: () => import('./pages/user/profile/profile.module').then( m => m.ProfilePageModule),
+    canLoad:[AuthGuard]
   },
   {
     path: 'messages',
-    loadChildren: () => import('./pages/user/chatlist/chatlist.module').then( m => m.ChatlistPageModule)
+    loadChildren: () => import('./pages/user/chatlist/chatlist.module').then( m => m.ChatlistPageModule),
+    canLoad:[AuthGuard]
   },
   {
     path: 'departments',
-    loadChildren: () => import('./pages/global/departmentlist/departmentlist.module').then( m => m.DepartmentlistPageModule)
+    loadChildren: () => import('./pages/global/departmentlist/departmentlist.module').then( m => m.DepartmentlistPageModule),
+    canLoad:[AuthGuard]
   },
   {
     path: 'departments/:id/students',
-    loadChildren: () => import('./pages/global/student-list/student-list.module').then( m => m.StudentListPageModule)
+    loadChildren: () => import('./pages/global/student-list/student-list.module').then( m => m.StudentListPageModule),
+    canLoad:[AuthGuard]
+  },
+  {
+    path: 'signup',
+    loadChildren: () => import('./pages/user/signup/signup.module').then( m => m.SignupPageModule),
+    canLoad:[UnauthenticatedGuard]
   },
 
 ];

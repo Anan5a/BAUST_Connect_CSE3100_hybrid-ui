@@ -1,6 +1,8 @@
+import {environment} from "../environments/environment";
+
 export class GlobalConstant {
-  public static apiUrl = 'http://127.0.0.1/api/'
-  public static siteRoot = 'http://127.0.0.1/'
-  public static appName = 'BAUSTian'
-  public static appDescription = ''
+  public static apiUrl = environment.apiUrl
+  public static siteRoot = environment.siteRoot
+  public static appName = environment.appName
+  public static appDescription = environment.appDescription
 }

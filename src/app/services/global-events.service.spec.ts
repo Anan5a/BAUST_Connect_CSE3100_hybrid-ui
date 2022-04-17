@@ -1,6 +1,6 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { GlobalEventsService } from './global-events.service';
+import {GlobalEventsService} from './global-events.service';
 
 describe('GlobalEventsService', () => {
   let service: GlobalEventsService;

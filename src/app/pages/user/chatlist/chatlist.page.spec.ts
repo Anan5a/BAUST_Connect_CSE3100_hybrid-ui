@@ -1,7 +1,7 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { IonicModule } from '@ionic/angular';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
+import {IonicModule} from '@ionic/angular';
 
-import { ChatlistPage } from './chatlist.page';
+import {ChatlistPage} from './chatlist.page';
 
 describe('ChatlistPage', () => {
   let component: ChatlistPage;
@@ -9,7 +9,7 @@ describe('ChatlistPage', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ ChatlistPage ],
+      declarations: [ChatlistPage],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 

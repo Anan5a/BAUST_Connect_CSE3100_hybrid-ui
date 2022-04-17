@@ -1,12 +1,12 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {FormsModule} from '@angular/forms';
 
-import { IonicModule } from '@ionic/angular';
+import {IonicModule} from '@ionic/angular';
 
-import { ChatlistPageRoutingModule } from './chatlist-routing.module';
+import {ChatlistPageRoutingModule} from './chatlist-routing.module';
 
-import { ChatlistPage } from './chatlist.page';
+import {ChatlistPage} from './chatlist.page';
 
 @NgModule({
   imports: [
@@ -17,4 +17,5 @@ import { ChatlistPage } from './chatlist.page';
   ],
   declarations: [ChatlistPage]
 })
-export class ChatlistPageModule {}
+export class ChatlistPageModule {
+}

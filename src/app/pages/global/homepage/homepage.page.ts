@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import {GlobalConstant} from "../../../GlobalConstant";
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-homepage',
@@ -9,6 +8,7 @@ import {GlobalConstant} from "../../../GlobalConstant";
 export class HomepagePage implements OnInit {
   constructor() {
   }
+
   ngOnInit(): void {
   }
 

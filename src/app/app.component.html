@@ -1,7 +1,7 @@
 <ion-app>
-  <ion-split-pane when="false" contentId="main-content">
+  <ion-split-pane contentId="main-content" when="false">
 
-    <ion-menu side="start" contentId="main-content" type="overlay">
+    <ion-menu contentId="main-content" side="start" type="overlay">
 
       <ion-header>
         <ion-toolbar color="primary">
@@ -13,12 +13,14 @@
 
       <ion-content>
         <ion-list id="inbox-list">
-          <ion-list-header>Sayem Prodhan</ion-list-header>
-          <ion-note>200101091</ion-note>
 
-          <ion-menu-toggle autoHide="false" *ngFor="let p of appPages; let i = index">
-            <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">
-              <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
+          <ion-list-header *ngIf="student?.student_id">{{ student?.full_name }}</ion-list-header>
+          <ion-note *ngIf="student?.student_id">{{ student?.student_id }}</ion-note>
+
+          <ion-menu-toggle *ngFor="let p of appPages; let i = index" autoHide="false">
+            <ion-item [routerLink]="[p.url]" detail="false" lines="none" routerDirection="root"
+                      routerLinkActive="selected">
+              <ion-icon [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'" slot="start"></ion-icon>
               <ion-label>{{ p.title }}</ion-label>
             </ion-item>
           </ion-menu-toggle>

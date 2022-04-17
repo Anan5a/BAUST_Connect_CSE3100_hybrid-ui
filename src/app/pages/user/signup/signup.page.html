@@ -10,15 +10,15 @@
 <ion-content>
   <ion-grid>
     <ion-row>
-      <ion-col size-xs="12" size-md="3" size-lg="4"></ion-col>
+      <ion-col size-lg="4" size-md="3" size-xs="12"></ion-col>
       <ion-col class="">
-        <h1 ion-text class="white">Signup</h1>
-        <p ion-text class="white">Create new account</p>
+        <h1 class="white" ion-text>Signup</h1>
+        <p class="white" ion-text>Create new account</p>
         <form (ngSubmit)="signup()" [formGroup]="credentials">
           <div class="input-group">
             <!-- student id -->
             <ion-item>
-              <ion-input type="text" placeholder="Student ID" formControlName="student_id"></ion-input>
+              <ion-input formControlName="student_id" placeholder="Student ID" type="text"></ion-input>
             </ion-item>
             <div *ngIf="(student_id.dirty || student_id.touched) && student_id.errors" class="errors">
               <span *ngIf="student_id.errors?.required">Enter your full student ID</span>
@@ -27,7 +27,7 @@
 
             <!-- Full name -->
             <ion-item>
-              <ion-input type="text" placeholder="Full Name" formControlName="full_name"></ion-input>
+              <ion-input formControlName="full_name" placeholder="Full Name" type="text"></ion-input>
             </ion-item>
             <div *ngIf="(full_name.dirty || full_name.touched) && full_name.errors" class="errors">
               <span *ngIf="full_name.errors?.required">Enter your full name</span>
@@ -35,7 +35,7 @@
             </div>
             <!-- batch -->
             <ion-item>
-              <ion-input type="text" placeholder="Batch" formControlName="batch"></ion-input>
+              <ion-input formControlName="batch" placeholder="Batch" type="text"></ion-input>
             </ion-item>
             <div *ngIf="(batch.dirty || batch.touched) && batch.errors" class="errors">
               <span *ngIf="batch.errors?.required">Type your batch number</span>
@@ -45,8 +45,9 @@
             <!-- department -->
             <ion-item (click)="load_departments()">
               <ion-label>Department</ion-label>
-              <ion-select name="department" formControlName="department_id">
-                <ion-select-option *ngFor="let department of departments" [value]="department.id">{{department.name_short}}</ion-select-option>
+              <ion-select formControlName="department_id" name="department">
+                <ion-select-option *ngFor="let department of departments"
+                                   [value]="department.id">{{department.name_short}}</ion-select-option>
               </ion-select>
             </ion-item>
             <!--
@@ -57,7 +58,7 @@
 -->
             <!-- email -->
             <ion-item>
-              <ion-input type="text" placeholder="Email" formControlName="email"></ion-input>
+              <ion-input formControlName="email" placeholder="Email" type="text"></ion-input>
             </ion-item>
             <div *ngIf="(email.dirty || email.touched) && email.errors" class="errors">
               <span *ngIf="email.errors?.required">Email address is required</span>
@@ -65,7 +66,7 @@
             </div>
             <!-- password -->
             <ion-item>
-              <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
+              <ion-input formControlName="password" placeholder="Password" type="password"></ion-input>
             </ion-item>
             <div *ngIf="(password.dirty || password.touched) && password.errors" class="errors">
               <span *ngIf="password.errors?.required">Password is required</span>
@@ -73,7 +74,7 @@
             </div>
             <!-- confirm password -->
             <ion-item>
-              <ion-input type="password" placeholder="Confirm Password" formControlName="c_password"></ion-input>
+              <ion-input formControlName="c_password" placeholder="Confirm Password" type="password"></ion-input>
             </ion-item>
             <div *ngIf="(c_password.dirty || c_password.touched) && c_password.errors" class="errors">
               <span *ngIf="c_password.errors?.required">Confirm Password is required</span>
@@ -82,9 +83,9 @@
             </div>
           </div>
 
-          <ion-button type="submit" expand="block" [disabled]="!credentials.valid">Signup</ion-button>
+          <ion-button [disabled]="!credentials.valid" expand="block" type="submit">Signup</ion-button>
           <!-- TODO: add captcha -->
-          <ion-text color="light">Not yet a member? Contact your department. </ion-text>
+          <ion-text color="light">Not yet a member? Contact your department.</ion-text>
 
         </form>
       </ion-col>

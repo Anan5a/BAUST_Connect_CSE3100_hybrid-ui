@@ -10,21 +10,21 @@
 <ion-content>
   <ion-grid>
     <ion-row>
-      <ion-col size-xs="12" size-md="3" size-lg="4"></ion-col>
+      <ion-col size-lg="4" size-md="3" size-xs="12"></ion-col>
       <ion-col class="">
-        <h1 ion-text class="white">Login</h1>
-        <p ion-text class="white">Login to your account</p>
+        <h1 class="white" ion-text>Login</h1>
+        <p class="white" ion-text>Login to your account</p>
         <form (ngSubmit)="login()" [formGroup]="credentials">
           <div class="input-group">
             <ion-item>
-              <ion-input type="text" placeholder="Student ID" formControlName="emailorid"></ion-input>
+              <ion-input formControlName="emailorid" placeholder="Student ID" type="text"></ion-input>
             </ion-item>
             <div *ngIf="(emailorid?.dirty || emailorid?.touched) && emailorid?.errors" class="errors">
               <span *ngIf="emailorid?.errors?.required">This field is required</span>
               <span *ngIf="emailorid?.errors?.emailorid">The input is invalid</span>
             </div>
             <ion-item>
-              <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
+              <ion-input formControlName="password" placeholder="Password" type="password"></ion-input>
             </ion-item>
             <div *ngIf="(password?.dirty || password?.touched) && password.errors" class="errors">
               <span *ngIf="password?.errors?.required">Password is required</span>
@@ -32,7 +32,7 @@
             </div>
           </div>
           <!-- TODO: Add captcha -->
-          <ion-button type="submit" expand="block" [disabled]="!credentials.valid">Log in</ion-button>
+          <ion-button [disabled]="!credentials.valid" expand="block" type="submit">Log in</ion-button>
 
           <ion-text color="light">Not yet a member? Contact your department.
           </ion-text>

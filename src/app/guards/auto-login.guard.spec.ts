@@ -1,6 +1,6 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { AutoLoginGuard } from './auto-login.guard';
+import {AutoLoginGuard} from './auto-login.guard';
 
 describe('AutoLoginGuard', () => {
   let guard: AutoLoginGuard;

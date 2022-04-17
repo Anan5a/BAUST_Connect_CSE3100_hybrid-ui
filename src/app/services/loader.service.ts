@@ -1,6 +1,5 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {LoadingController, ToastController} from "@ionic/angular";
-import {AuthenticationService} from "./authentication.service";
 
 @Injectable({
   providedIn: 'root'
@@ -8,17 +7,19 @@ import {AuthenticationService} from "./authentication.service";
 export class LoaderService {
   private loader: any;
   private isLoading: Boolean = false;
+
   constructor(
-    public loadingController:LoadingController,
-    public toastController:ToastController,
-  ) { }
+    public loadingController: LoadingController,
+    public toastController: ToastController,
+  ) {
+  }
 
   async showLoader(message = 'Processing Server Request') {
     this.isLoading = true
-     this.loadingController.create({
+    this.loadingController.create({
       message: message
     }).then((res) => {
-      res.present().then(()=>{
+      res.present().then(() => {
         if (!this.isLoading) {
           res.dismiss().then(() => console.log('abort presenting'));
         }
@@ -39,11 +40,11 @@ export class LoaderService {
 
   }
 
-  async showToast(message,color=undefined, duration=2000) {
+  async showToast(message, color = undefined, duration = 2000) {
     const toast = await this.toastController.create({
       message: message,
       duration: duration,
-      color:color
+      color: color
     });
     await toast.present();
   }

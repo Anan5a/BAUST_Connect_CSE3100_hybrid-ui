@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>admin>departments</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col *ngFor="let department of departments" size-lg="4" size-md="6" size-sm="4" size-xl="4" size-xs="12">
+        <ion-card [button]="true">
+          <ion-card-header>
+            <img [src]="sanitizer.bypassSecurityTrustUrl(department.backdrop)" alt="dept image {{ department.name }}">
+            <ion-card-title>{{department.name}} ({{department.name_short}})</ion-card-title>
+            <ion-card-subtitle>Since: {{department.birth_date}} </ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            {{department.description}}
+            <ion-list>
+              <ion-item>
+                <ion-button (click)="router.navigateByUrl('/admin/department/edit/'+department.id)" color="primary">
+                  <ion-icon ios="create-outline" md="create-sharp" name="create-sharp"></ion-icon>
+                  Edit
+                </ion-button>
+
+                <ion-button (click)="router.navigateByUrl('/departments/'+department.id+'/students')" color="primary">
+                  <ion-icon ios="list-outline" md="list-sharp" name="list-sharp"></ion-icon>
+                  Students
+                </ion-button>
+              </ion-item>
+            </ion-list>
+          </ion-card-content>
+
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

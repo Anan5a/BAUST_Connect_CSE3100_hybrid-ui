@@ -6,10 +6,12 @@ ion-content {
   --background: url('https://images.unsplash.com/photo-1536431311719-398b6704d4cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1234&q=80') 0 0/100% 100% no-repeat;
 
 }
-form{
+
+form {
   max-width: 400px;
   align-items: center;
 }
+
 .input-group {
   background: #fff;
   border-radius: 10px;
@@ -25,6 +27,7 @@ form{
   padding-top: 5px;
   padding-bottom: 5px;
 }
-.white{
+
+.white {
   color: white;
 }

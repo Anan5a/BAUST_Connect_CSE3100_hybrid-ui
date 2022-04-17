@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {DataStudent} from "../../../dataclass/DataStudent";
+import {AuthenticationService} from "../../../services/authentication.service";
 
 @Component({
   selector: 'app-profile',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfilePage implements OnInit {
 
-  constructor() { }
+  student: DataStudent = new DataStudent()
+
+  constructor(private authService: AuthenticationService) {
+  }
 
   ngOnInit() {
+
+    this.authService.getProfile().then(ok => {
+      this.student = ok
+    })
   }
 
 }

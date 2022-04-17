@@ -15,12 +15,14 @@ export class AuthGuard implements CanLoad {
     segments: UrlSegment[],
   ):
     Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return this.authService.isLoggedIn().then(ok=>{
-      if (ok === 'true'){
+
+    return this.authService.isLoggedIn().then(ok => {
+      if (ok === 'true') {
         return true
       }
       this.router.navigateByUrl('/login', {replaceUrl: true})
       return false
     })
+
   }
 }

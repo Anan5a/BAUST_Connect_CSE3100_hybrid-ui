@@ -1,0 +1,96 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>admin>add departments</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size-lg="4" size-md="3" size-xs="12"></ion-col>
+      <ion-col class="">
+        <h1 class="white" ion-text>Add department</h1>
+        <p class="white" ion-text>Create new department</p>
+        <!--  <form (ngSubmit)="createDepartment()" [formGroup]="credentials">
+            <div class="input-group">-->
+        <!-- student id -->
+        <!--            <ion-item>
+                      <ion-input type="text" placeholder="Student ID" formControlName="student_id"></ion-input>
+                    </ion-item>
+                    <div *ngIf="(student_id.dirty || student_id.touched) && student_id.errors" class="errors">
+                      <span *ngIf="student_id.errors?.required">Enter your full student ID</span>
+                      <span *ngIf="student_id.errors?.student_id">The input is invalid</span>
+                    </div>
+        -->
+        <!-- Full name -->
+        <!--         <ion-item>
+                   <ion-input type="text" placeholder="Full Name" formControlName="full_name"></ion-input>
+                 </ion-item>
+                 <div *ngIf="(full_name.dirty || full_name.touched) && full_name.errors" class="errors">
+                   <span *ngIf="full_name.errors?.required">Enter your full name</span>
+                   <span *ngIf="full_name.errors?.full_name">The input is invalid</span>
+                 </div>
+                 -->
+        <!-- batch -->
+        <!--
+        <ion-item>
+          <ion-input type="text" placeholder="Batch" formControlName="batch"></ion-input>
+        </ion-item>
+        <div *ngIf="(batch.dirty || batch.touched) && batch.errors" class="errors">
+          <span *ngIf="batch.errors?.required">Type your batch number</span>
+          <span *ngIf="batch.errors?.batch">The input is invalid</span>
+        </div>
+-->
+        <!-- department -->
+        <!--         <ion-item (click)="load_departments()">
+                   <ion-label>Department</ion-label>
+                   <ion-select name="department" formControlName="department_id">
+                     <ion-select-option *ngFor="let department of departments" [value]="department.id">{{department.name_short}}</ion-select-option>
+                   </ion-select>
+                 </ion-item>
+                 -->
+        <!--
+<div *ngIf="(emailorid.dirty || emailorid.touched) && emailorid.errors" class="errors">
+<span *ngIf="emailorid.errors?.required">This field is required</span>
+<span *ngIf="emailorid.errors?.emailorid">The input is invalid</span>
+</div>
+-->
+        <!-- email -->
+        <!--<ion-item>
+          <ion-input type="text" placeholder="Email" formControlName="email"></ion-input>
+        </ion-item>
+        <div *ngIf="(email.dirty || email.touched) && email.errors" class="errors">
+          <span *ngIf="email.errors?.required">Email address is required</span>
+          <span *ngIf="email.errors?.email">The email is invalid</span>
+        </div>-->
+        <!-- password -->
+        <!--            <ion-item>
+                      <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
+                    </ion-item>
+                    <div *ngIf="(password.dirty || password.touched) && password.errors" class="errors">
+                      <span *ngIf="password.errors?.required">Password is required</span>
+                      <span *ngIf="password.errors?.minlength">Password needs to be 8 characters</span>
+                    </div>-->
+        <!-- confirm password -->
+        <!--<ion-item>
+          <ion-input type="password" placeholder="Confirm Password" formControlName="c_password"></ion-input>
+        </ion-item>
+        <div *ngIf="(c_password.dirty || c_password.touched) && c_password.errors" class="errors">
+          <span *ngIf="c_password.errors?.required">Confirm Password is required</span>
+          <br>
+          <span *ngIf="credentials.hasError('notSame')">Confirm password doesn't match</span>
+        </div>
+      </div>
+-->
+        <!--<ion-button type="submit" expand="block" [disabled]="!credentials.valid">Signup</ion-button>-->
+        <!-- TODO: add captcha -->
+        <!--<ion-text color="light">Not yet a member? Contact your department. </ion-text>-->
+
+        <!--     </form>-->
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

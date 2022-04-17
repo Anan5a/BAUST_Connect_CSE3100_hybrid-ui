@@ -1,12 +1,11 @@
-export class DataDepartment{
+export class DataDepartment {
   id: number;
-  //name: Computer Science and Engineering,
+  name: string;
   name_short: string;
-  //description: description .... ddd,
-  //birth_date: 2022-03-14 16:25:32,
-  //icon: icon,
-  //backdrop: bd,
-  //external_link: el,
-  //created_at: 2022-03-14T16:25:32.000000Z,
-  //updated_at
+  description: string;
+  birth_date: string;
+  icon: string;
+  backdrop: string;
+  external_link: string;
+  //"updated_at","name", "description", "birth_date", "icon","backdrop","external_link","created_at"
 }

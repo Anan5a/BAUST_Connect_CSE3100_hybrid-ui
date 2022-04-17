@@ -1,6 +1,6 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { NetworkHttpService } from './network-http.service';
+import {NetworkHttpService} from './network-http.service';
 
 describe('NetworkHttpService', () => {
   let service: NetworkHttpService;

@@ -1,12 +1,12 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {FormsModule} from '@angular/forms';
 
-import { IonicModule } from '@ionic/angular';
+import {IonicModule} from '@ionic/angular';
 
-import { StudentListPageRoutingModule } from './student-list-routing.module';
+import {StudentListPageRoutingModule} from './student-list-routing.module';
 
-import { StudentListPage } from './student-list.page';
+import {StudentListPage} from './student-list.page';
 
 @NgModule({
   imports: [
@@ -17,4 +17,5 @@ import { StudentListPage } from './student-list.page';
   ],
   declarations: [StudentListPage]
 })
-export class StudentListPageModule {}
+export class StudentListPageModule {
+}

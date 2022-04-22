@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthenticationService} from "../../../services/authentication.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {StorageService} from "../../../services/storage.service";
 import {GlobalEventsService} from "../../../services/global-events.service";
 import {DataStudent} from "../../../dataclass/DataStudent";
@@ -19,7 +19,8 @@ export class LoginPage implements OnInit {
     private authService: AuthenticationService,
     private router: Router,
     private storageService: StorageService,
-    private events: GlobalEventsService
+    private events: GlobalEventsService,
+    private activeRoute:ActivatedRoute
   ) {
 
   }
@@ -37,7 +38,7 @@ export class LoginPage implements OnInit {
     const isLoggedIn = this.authService.isLoggedIn()
     isLoggedIn.then((n) => {
       if (n === 'true')
-        this.router.navigateByUrl('/profile', {replaceUrl: true})
+        this.router.navigateByUrl(this.activeRoute.snapshot.queryParams['redirectTo'] || '/profile', {replaceUrl: true})
     })
     /**
      * logout module
@@ -65,7 +66,7 @@ export class LoginPage implements OnInit {
     this.authService.login(this.credentials.value).subscribe((f) => {
       if (f) {
         this.storageService.set('loggedIn', 'true')
-        this.router.navigateByUrl('/profile', {replaceUrl: true});
+        this.router.navigateByUrl(this.activeRoute.snapshot.queryParams['redirectTo']||'/profile', {replaceUrl: true});
         this.events.publishEvent({'update_menu': true})
         this.events.publishEvent({'update_profile': f.data})
         this.storageService.set('userProfile', f.data)

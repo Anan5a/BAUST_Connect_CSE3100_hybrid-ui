@@ -43,7 +43,11 @@ export class HttpConfigInterceptor implements HttpInterceptor {
           this.loaderService.showToast("Try again", "warning")
         } else if ([403, 401, 422].includes(error.status)) {
           this.loaderService.showToast(error.error.message, "danger")
-        } else {
+        }
+        else if(error.status == 404){
+          this.loaderService.showToast(error.error.message, "danger", 5000)
+        }
+        else{
           this.loaderService.showToast(error.message, "danger")
         }
         this.loaderService.hideLoader()

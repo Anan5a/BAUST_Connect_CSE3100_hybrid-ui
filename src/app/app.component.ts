@@ -3,6 +3,8 @@ import {GlobalConstant} from "./GlobalConstant";
 import {StorageService} from "./services/storage.service";
 import {GlobalEventsService} from "./services/global-events.service";
 import {DataStudent} from "./dataclass/DataStudent";
+import {RouteConfigLoadEnd, RouteConfigLoadStart, Router, RouterEvent} from "@angular/router";
+import {LoaderService} from "./services/loader.service";
 
 @Component({
   selector: 'app-root',
@@ -15,7 +17,10 @@ export class AppComponent {
   public appPages: any = [];
   student: DataStudent = new DataStudent()
 
-  constructor(private storageService: StorageService, public events: GlobalEventsService) {
+  constructor(private loader:LoaderService,private router:Router,private storageService: StorageService, public events: GlobalEventsService) {
+    this.routeLoading()
+
+
     this.menu_loader()
     this.events.getObservable().subscribe((data) => {
       if ('update_menu' in data) {
@@ -84,5 +89,18 @@ export class AppComponent {
         }
       })
     })
+  }
+  routeLoading(){
+    /**
+     * Loading
+     */
+    this.router.events.subscribe((event:RouterEvent)=>{
+      if (event instanceof RouteConfigLoadStart){
+        this.loader.showLoader('')
+      }else if(event instanceof RouteConfigLoadEnd){
+        this.loader.hideLoader()
+      }
+    })
+
   }
 }

@@ -12,11 +12,7 @@ export class UnauthenticatedGuard implements CanLoad {
 
   canLoad(route: Route, segments: UrlSegment[]): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     return this.authService.isLoggedIn().then(ok => {
-      if (ok === 'true') {
-        this.router.navigateByUrl('/profile', {replaceUrl: true})
-        return false
-      }
-      return true
+      return ok !== 'true';
     })
   }
 

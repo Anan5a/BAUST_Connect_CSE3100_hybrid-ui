@@ -42,9 +42,8 @@ export class AuthenticationService {
 
   }
 
-  getProfile() {
+  getProfile(server = false) {
     return this.storageService.get('userProfile')
-
   }
 
   logout() {
@@ -58,6 +57,11 @@ export class AuthenticationService {
       .subscribe(ok => {
         this.loaderService.showToast(ok.message)
       });
-
+  }
+  getProfileFromServer(id){
+    return this.httpClient.get<[]>(this.apiRoot + 'student/'+id)
+      .pipe(
+        catchError(this.httpconfig.handleError<any>('get profile error occurred'))
+      )
   }
 }

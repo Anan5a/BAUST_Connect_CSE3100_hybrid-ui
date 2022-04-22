@@ -27,6 +27,11 @@ const routes: Routes = [
     loadChildren: () => import('./pages/user/intro/intro.module').then(m => m.IntroPageModule)
   },
   {
+    path: 'profile/view/:id',
+    loadChildren: () => import('./pages/user/profile/profile.module').then(m => m.ProfilePageModule),
+    canLoad: []
+  },
+  {
     path: 'profile',
     loadChildren: () => import('./pages/user/profile/profile.module').then(m => m.ProfilePageModule),
     canLoad: [AuthGuard]
@@ -72,13 +77,14 @@ const routes: Routes = [
     loadChildren: () => import('./pages/admin/site-post/site-post.module').then(m => m.SitePostPageModule)
   },
   {
+    path: 'admin/login',
+    loadChildren: () => import('./pages/admin/login/login.module').then(m => m.LoginPageModule)
+  },
+  {
     path: '**',
     redirectTo: 'error404'
   },
-  {
-    path: 'login',
-    loadChildren: () => import('./pages/admin/login/login.module').then(m => m.LoginPageModule)
-  },
+
 ];
 
 @NgModule({

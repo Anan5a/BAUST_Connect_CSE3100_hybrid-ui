@@ -1,7 +1,10 @@
 {
-  "name": "BAUST Connect",
+  "name": "BAUSTian",
   "integrations": {
-    "capacitor": {}
+    "capacitor": {
+      "enabled": false
+    },
+    "cordova": {}
   },
   "type": "angular"
 }

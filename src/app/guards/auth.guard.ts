@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {CanLoad, Route, Router, UrlSegment, UrlTree} from '@angular/router';
+import {ActivatedRoute, ActivatedRouteSnapshot, CanLoad, Route, Router, UrlSegment, UrlTree} from '@angular/router';
 import {Observable} from 'rxjs';
 import {AuthenticationService} from "../services/authentication.service";
 
@@ -20,9 +20,8 @@ export class AuthGuard implements CanLoad {
       if (ok === 'true') {
         return true
       }
-      this.router.navigateByUrl('/login', {replaceUrl: true})
+      this.router.navigate(['login'], {queryParams:{returnTo:route.path},replaceUrl: true})
       return false
     })
-
   }
 }

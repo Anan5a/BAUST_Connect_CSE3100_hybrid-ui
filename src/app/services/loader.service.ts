@@ -40,11 +40,12 @@ export class LoaderService {
 
   }
 
-  async showToast(message, color = undefined, duration = 2000) {
+  async showToast(message, color = undefined, duration = 4500, icon="information-circle-sharp") {
     const toast = await this.toastController.create({
       message: message,
       duration: duration,
-      color: color
+      color: color,
+      icon:icon
     });
     await toast.present();
   }

@@ -90,10 +90,12 @@ export class SignupPage implements OnInit {
 
   async signup() {
     this.authService.signup(this.credentials.value).subscribe((response) => {
-      this.loaderService.showToast("Account created successfully!", "success")
-      this.router.navigateByUrl('/login', {replaceUrl: true})
+      if (response && response.status == 'ok'){
+        this.loaderService.showToast("Account created successfully!", "success")
+        this.router.navigateByUrl('/login', {replaceUrl: true})
+      }
     }, (error) => {
-
+      this.loaderService.showToast(error.error.message||"An error occured", "danger",3000)
     })
 
   }

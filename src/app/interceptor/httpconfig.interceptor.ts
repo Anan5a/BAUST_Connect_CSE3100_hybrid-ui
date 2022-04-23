@@ -45,7 +45,7 @@ export class HttpConfigInterceptor implements HttpInterceptor {
           this.loaderService.showToast(error.error.message, "danger")
         }
         else if(error.status == 404){
-          this.loaderService.showToast(error.error.message, "danger", 5000)
+          this.loaderService.showToast(error.error.message||"Item not found", "danger", 5000)
         }
         else{
           this.loaderService.showToast(error.message, "danger")

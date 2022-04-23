@@ -24,14 +24,14 @@ export class AuthenticationService {
   }
 
   login(user) {
-    return this.httpClient.post(this.apiRoot + 'student/login', JSON.stringify(user))
+    return this.httpClient.post(this.apiRoot + 'student/login', user)
       .pipe(
         catchError(this.httpconfig.handleError<any>('Login error occurred'))
       );
   }
 
   signup(user) {
-    return this.httpClient.post(this.completePath, JSON.stringify(user))
+    return this.httpClient.post(this.completePath, user)
       .pipe(
         catchError(this.httpconfig.handleError<any>('Signup error occurred'))
       );

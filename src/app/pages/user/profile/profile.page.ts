@@ -17,11 +17,12 @@ export class ProfilePage implements OnInit {
   }
 
   ngOnInit() {
+    //check if non login profile is requested
     let routing = this.route.snapshot.paramMap.get('id')
     if (routing)
-      this.loadProfile(routing)
+      this.loadProfile(routing) //load from server
     else
-      this.loadProfile()
+      this.loadProfile() //load from browser
   }
 
   loadProfile(id = null) {

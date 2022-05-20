@@ -9,6 +9,7 @@ import {DepartmentPageRoutingModule} from './department-routing.module';
 import {DepartmentPage} from './department.page';
 import {AddDepartmentPage} from "./add-department.page";
 import {EditDepartmentPage} from "./edit-department.page";
+import {StudentPage} from "../student/student.page";
 
 @NgModule({
   imports: [
@@ -21,7 +22,8 @@ import {EditDepartmentPage} from "./edit-department.page";
   declarations: [
     DepartmentPage,
     AddDepartmentPage,
-    EditDepartmentPage
+    EditDepartmentPage,
+    StudentPage
   ]
 })
 export class DepartmentPageModule {

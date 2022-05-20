@@ -15,8 +15,8 @@ import {LoaderService} from "../../../services/loader.service";
 export class SignupPage implements OnInit {
 
   credentials: FormGroup = new FormGroup({})
-
-  departments: DataDepartment[]
+  force_disable: boolean = false;
+  departments: DataDepartment[]|any
 
   constructor(
     private fb: FormBuilder,
@@ -60,6 +60,7 @@ export class SignupPage implements OnInit {
     return pass === confirmPass ? null : {notSame: true}
   }
 
+
   ngOnInit() {
     const isLoggedIn = this.authService.isLoggedIn()
     isLoggedIn.then((n) => {
@@ -89,6 +90,7 @@ export class SignupPage implements OnInit {
   }
 
   async signup() {
+    this.force_disable = true
     this.authService.signup(this.credentials.value).subscribe((response) => {
       if (response && response.status == 'ok'){
         this.loaderService.showToast("Account created successfully!", "success")
@@ -97,7 +99,7 @@ export class SignupPage implements OnInit {
     }, (error) => {
       this.loaderService.showToast(error.error.message||"An error occured", "danger",3000)
     })
-
+    this.force_disable = false
   }
 
 }

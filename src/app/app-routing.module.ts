@@ -2,6 +2,8 @@ import {NgModule} from '@angular/core';
 import {PreloadAllModules, RouterModule, Routes} from '@angular/router';
 import {AuthGuard} from "./guards/auth.guard";
 import {UnauthenticatedGuard} from "./guards/unauthenticated.guard";
+import {AdminGuard} from "./guards/admin.guard";
+import {UnAuthenticatedAdminGuard} from "./guards/un-authenticated-admin.guard";
 
 const routes: Routes = [
   {
@@ -65,25 +67,42 @@ const routes: Routes = [
     loadChildren: () => import('./pages/global/error404/error404.module').then(m => m.Error404PageModule)
   },
   {
+    path: 'admin/dashboard',
+    loadChildren: () => import('./pages/admin/dashboard/dashboard.module').then( m => m.DashboardPageModule),
+    canLoad:[AdminGuard],
+  },
+  {
     path: 'admin/department',
-    loadChildren: () => import('./pages/admin/department/department.module').then(m => m.DepartmentPageModule)
+    loadChildren: () => import('./pages/admin/department/department.module').then(m => m.DepartmentPageModule),
+    canLoad:[AdminGuard],
+  },
+  {
+    path: 'admin/list',
+    loadChildren: () => import('./pages/admin/adminlist/adminlist.module').then( m => m.AdminlistPageModule),
+    canLoad:[AdminGuard],
+
   },
   {
     path: 'admin/student',
-    loadChildren: () => import('./pages/admin/student/student.module').then(m => m.StudentPageModule)
+    loadChildren: () => import('./pages/admin/student/student.module').then(m => m.StudentPageModule),
+    canLoad:[AdminGuard],
   },
   {
     path: 'admin/site-post',
-    loadChildren: () => import('./pages/admin/site-post/site-post.module').then(m => m.SitePostPageModule)
+    loadChildren: () => import('./pages/admin/site-post/site-post.module').then(m => m.SitePostPageModule),
+    canLoad:[AdminGuard],
   },
   {
     path: 'admin/login',
-    loadChildren: () => import('./pages/admin/login/login.module').then(m => m.LoginPageModule)
+    loadChildren: () => import('./pages/admin/login/login.module').then(m => m.LoginPageModule),
+    canLoad:[UnAuthenticatedAdminGuard]
   },
   {
     path: '**',
     redirectTo: 'error404'
   },
+
+
 
 ];
 

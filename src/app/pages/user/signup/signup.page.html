@@ -83,7 +83,7 @@
             </div>
           </div>
 
-          <ion-button [disabled]="!credentials.valid" expand="block" type="submit">Signup</ion-button>
+          <ion-button [disabled]="!credentials.valid || force_disable" expand="block" type="submit">Signup</ion-button>
           <!-- TODO: add captcha -->
           <ion-text color="light">Not yet a member? Contact your department.</ion-text>
 

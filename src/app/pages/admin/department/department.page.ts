@@ -11,7 +11,7 @@ import {DomSanitizer} from "@angular/platform-browser";
   styleUrls: ['./department.page.scss'],
 })
 export class DepartmentPage implements OnInit {
-  departments: DataDepartment[];
+  departments: DataDepartment[]|any;
 
   constructor(public router: Router, private departmentService: DepartmentService, private loaderService: LoaderService, public sanitizer: DomSanitizer) {
   }

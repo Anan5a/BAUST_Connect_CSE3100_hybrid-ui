@@ -10,6 +10,12 @@
 <ion-content>
   <ion-grid>
     <ion-row>
+      <ion-fab vertical="bottom" horizontal="end" slot="">
+        <ion-fab-button color="primary" href="/admin/department/add">
+          <ion-icon name="add-sharp" md="add-sharp" ios="add-outline"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
+
       <ion-col *ngFor="let department of departments" size-lg="4" size-md="6" size-sm="4" size-xl="4" size-xs="12">
         <ion-card [button]="true">
           <ion-card-header>
@@ -26,7 +32,7 @@
                   Edit
                 </ion-button>
 
-                <ion-button (click)="router.navigateByUrl('/departments/'+department.id+'/students')" color="primary">
+                <ion-button (click)="router.navigateByUrl('/admin/department/'+department.id+'/students')" color="primary">
                   <ion-icon ios="list-outline" md="list-sharp" name="list-sharp"></ion-icon>
                   Students
                 </ion-button>

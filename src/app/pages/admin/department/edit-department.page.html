@@ -12,9 +12,90 @@
     <ion-row>
       <ion-col size-lg="4" size-md="3" size-xs="12"></ion-col>
       <ion-col class="">
-        <h1 class="white" ion-text>Signup</h1>
-        <p class="white" ion-text>Create new account</p>
+        <h1 class="white" ion-text>{{text_1}}</h1>
+        <p class="white" ion-text>{{text_2}}</p>
+        <form (ngSubmit)="updateDepartment()" [formGroup]="credentials">
+          <div class="input-group">
+            <!--dept name full-->
+            <ion-item>
+              <ion-input type="text" placeholder="Department full name" formControlName="name"
+                         [value]="external_data?.name"></ion-input>
+            </ion-item>
+            <div *ngIf="(name.dirty || name.touched) && name.errors" class="errors">
+              <span *ngIf="name.errors?.required">Enter full name</span>
+              <span *ngIf="name.errors?.name">The input is invalid</span>
+            </div>
+            <!--dept name short-->
+            <ion-item>
+              <ion-input type="text" placeholder="Department short name" formControlName="name_short"
+                         [value]="external_data?.name_short"></ion-input>
+            </ion-item>
+            <div *ngIf="(name_short.dirty || name_short.touched) && name_short.errors" class="errors">
+              <span *ngIf="name_short.errors?.required">Enter short name</span>
+              <span *ngIf="name_short.errors?.name_short">The input is invalid</span>
+            </div>
+            <!--description-->
+            <ion-item>
+              <ion-textarea type="text" placeholder="Description" formControlName="description"
+                            [value]="external_data?.description"></ion-textarea>
+            </ion-item>
+            <div *ngIf="(description.dirty || description.touched) && description.errors" class="errors">
+              <span *ngIf="description.errors?.required">Department description</span>
+              <span *ngIf="description.errors?.description">The input is invalid</span>
+            </div>
+            <!--birth date-->
+            <ion-item>
+              <ion-label slot="end">Date</ion-label>
+
+              <ion-datetime presentation="date" formControlName="birth_date"></ion-datetime>
+              <!--<ion-input id="birth_date" class="ion-text-end" formControlName="birth_date"
+                         [value]="external_data?.birth_date"></ion-input>
+              <ion-popover trigger="birth_date" size="auto">
+                <ng-template>
+                  <ion-datetime presentation="date" formControlName="birth_date"></ion-datetime>
+                </ng-template>
+              </ion-popover>-->
+            </ion-item>
+            <div *ngIf="(birth_date.dirty || birth_date.touched) && birth_date.errors" class="errors">
+              <span *ngIf="birth_date.errors?.required">This field is required</span>
+              <span *ngIf="birth_date.errors?.birth_date">The input is invalid</span>
+            </div>
+            <!--icon-->
+            <ion-item>
+              <ion-input type="text" placeholder="Icon url" formControlName="icon"
+                         [value]="external_data?.icon"></ion-input>
+            </ion-item>
+            <div *ngIf="(icon.dirty || icon.touched) && icon.errors" class="errors">
+              <span *ngIf="icon.errors?.required">Icon image link is required</span>
+              <span *ngIf="icon.errors?.icon">The link is invalid</span>
+            </div>
+            <!--backdrop-->
+            <ion-item>
+              <ion-input type="text" placeholder="Department image link" formControlName="backdrop"
+                         [value]="external_data?.backdrop"></ion-input>
+            </ion-item>
+            <div *ngIf="(backdrop.dirty || backdrop.touched) && backdrop.errors" class="errors">
+              <span *ngIf="backdrop.errors?.required">Dept. image link is required</span>
+              <span *ngIf="backdrop.errors?.backdrop">The link is invalid</span>
+            </div>
+            <!--external link-->
+            <ion-item>
+              <ion-input type="text" placeholder="Website url" formControlName="external_link"
+                         [value]="external_data?.external_link"></ion-input>
+            </ion-item>
+            <div *ngIf="(external_link.dirty || external_link.touched) && external_link.errors" class="errors">
+              <span *ngIf="external_link.errors?.required">BAUST website link is required</span>
+              <span *ngIf="external_link.errors?.external_link">The link is invalid</span>
+            </div>
+
+          </div>
+          <ion-button type="submit" expand="block" [disabled]="!credentials.valid">{{create_update_text}}</ion-button>
+          <!--TODO: add captcha-->
+
+
+        </form>
       </ion-col>
+
     </ion-row>
   </ion-grid>
 </ion-content>

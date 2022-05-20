@@ -1,0 +1,91 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>admin list</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-col>
+      <ion-card>
+        <ion-card-content>
+          <h1>
+            <ion-icon name="people" md="people-sharp" ios="people-outline"></ion-icon>
+            {{ fullBody?.data.length }} admins
+          </h1>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+    <ion-col>
+      <h2>List of admins</h2>
+      <ion-row>
+        <h4 style="color: darkgrey" class="ion-text-center ion-color-tertiary">
+          Page {{ fullBody?.meta.current_page }} of {{ fullBody?.meta.last_page }} | {{ fullBody?.meta.per_page }} per page |
+          Showing {{ fullBody?.meta.from }}-{{ fullBody?.meta.to }}
+        </h4>
+
+<!--          <ion-buttons *ngFor="let link of fullBody?.meta.links">
+            <ion-button [disabled]="!link?.active" fill="solid" (click)="loadAdminList(link?.url)">{{getLabel(link?.label)}}</ion-button>
+
+            &lt;!&ndash;<ion-button *ngIf="fullBody?.links.prev != null" fill="solid" (click)="loadAdminList(sanitizer.bypassSecurityTrustUrl(fullBody?.meta.prev))">Prev</ion-button>
+            <ion-button *ngIf="fullBody?.links.next != null" fill="solid" (click)="loadAdminList(sanitizer.bypassSecurityTrustUrl(fullBody?.meta.next))">Prev</ion-button>&ndash;&gt;
+          </ion-buttons>-->
+        <ion-buttons>
+          <ion-button [disabled]="fullBody?.links.first == null" fill="solid" (click)="loadAdminList(fullBody?.links.first)">First</ion-button>
+          <ion-button [disabled]="fullBody?.links.prev == null" fill="solid" (click)="loadAdminList(fullBody?.links.prev)">Prev</ion-button>
+          <ion-button [disabled]="fullBody?.links.next == null" fill="solid" (click)="loadAdminList(fullBody?.links.next)">Next</ion-button>
+          <ion-button [disabled]="fullBody?.links.last == null" fill="solid" (click)="loadAdminList(fullBody?.links.last)">Last</ion-button>
+        </ion-buttons>
+
+      </ion-row>
+
+      <!--Table-->
+      <!--header-->
+      <ion-grid>
+        <ion-row>
+          <ion-col class="table">
+            <b>Name</b>
+          </ion-col>
+          <ion-col class="table">
+            <b>Email</b>
+          </ion-col>
+          <ion-col class="table">
+            <b>Permission level</b>
+          </ion-col>
+          <ion-col class="table">
+            <b>Actions</b>
+
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <!--Content-->
+      <ion-grid *ngFor="let admin of fullBody?.data">
+        <ion-row>
+          <ion-col class="table">
+            {{ admin.full_name }} ({{ admin.uni_per_id }})
+          </ion-col>
+          <ion-col class="table">
+            {{ admin.email }}
+            <i *ngIf="admin.email_verified_at != null">&#10004;</i>
+            <i *ngIf="admin.email_verified_at == null">&#10060;</i>
+          </ion-col>
+          <ion-col class="table">
+            {{ admin.level }}
+
+          </ion-col>
+          <ion-col class="table">
+            <ion-buttons class="ion-justify-content-center">
+              <ion-button fill="outline" color="primary">Activate|Deactivate</ion-button>
+              <ion-button fill="outline" color="danger">Delete</ion-button>
+              <ion-button fill="outline" color="tertiary">Edit</ion-button>
+            </ion-buttons>
+
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-col>
+  </ion-grid>
+</ion-content>

@@ -11,7 +11,7 @@ import {Router} from "@angular/router";
   styleUrls: ['./departmentlist.page.scss'],
 })
 export class DepartmentlistPage implements OnInit {
-  departments: DataDepartment[]
+  departments: DataDepartment[]|any
 
   constructor(
     private departmentService: DepartmentService,
@@ -28,6 +28,7 @@ export class DepartmentlistPage implements OnInit {
   loadDepartments() {
     this.departmentService.getDepartments().subscribe(
       (succ) => {
+
         this.departments = succ
       },
       (err) => {

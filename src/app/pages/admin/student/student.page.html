@@ -1,9 +1,97 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>student</ion-title>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>admin>dept. student list</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-grid>
+    <ion-col>
+      <ion-card>
+        <ion-card-content>
+          <h1>
+            <ion-icon name="people" md="people-sharp" ios="people-outline"></ion-icon>
+            {{fullBody?.student_count}} students | {{fullBody?.department.name}}({{fullBody?.department.name_short}})
+          </h1>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+    <ion-col>
+      <h2>List of students</h2>
+      <ion-row>
+        <h4 style="color: darkgrey" class="ion-text-center ion-color-tertiary">
+          Page {{ fullBody?.students.current_page }} of {{ fullBody?.students.last_page }} | {{ fullBody?.students.per_page }} per page |
+          Showing {{ fullBody?.students.from }}-{{ fullBody?.students.to }}
+        </h4>
+        <ion-buttons>
+          <ion-button [disabled]="fullBody?.students.first_page_url == null" fill="solid" (click)="getStudentList(fullBody?.students.first_page_url)">First</ion-button>
+          <ion-button [disabled]="fullBody?.students.prev_page_url == null" fill="solid" (click)="getStudentList(fullBody?.students.prev_page_url)">Prev</ion-button>
+          <ion-button [disabled]="fullBody?.students.next_page_url == null" fill="solid" (click)="getStudentList(fullBody?.students.next_page_url)">Next</ion-button>
+          <ion-button [disabled]="fullBody?.students.last_page_url == null" fill="solid" (click)="getStudentList(fullBody?.students.last_page_url)">Last</ion-button>
+        </ion-buttons>
 
+      </ion-row>
+
+      <!--Table-->
+      <!--header-->
+      <ion-grid>
+        <ion-row>
+          <ion-col class="table">
+            <b>Name</b>
+          </ion-col>
+          <ion-col class="table">
+            <b>ID</b>
+          </ion-col>
+          <ion-col class="table">
+            <b>Email</b>
+          </ion-col>
+          <ion-col class="table">
+            <b>Address</b>
+          </ion-col>
+          <ion-col class="table">
+            <b>Dept.</b>
+          </ion-col>
+          <ion-col class="table">
+            <b>Batch</b>
+          </ion-col>
+          <ion-col class="table">
+            <b>Actions</b>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <!--Content-->
+      <ion-grid *ngFor="let student of fullBody?.students.data">
+        <ion-row>
+          <ion-col class="table">
+            {{ student.full_name }}
+          </ion-col>
+          <ion-col class="table">
+            {{student.student_id}}
+          </ion-col>
+          <ion-col class="table">
+            {{ student.email }}
+          </ion-col>
+          <ion-col class="table">
+            {{ student.current_address }}
+          </ion-col>
+          <ion-col class="table">
+            {{ fullBody?.department.name_short }}
+          </ion-col>
+          <ion-col class="table">
+            {{ student.batch }}
+          </ion-col>
+          <ion-col class="table">
+            <ion-buttons>
+              <ion-button fill="outline" color="danger">Delete</ion-button>
+              <ion-button fill="outline" color="warning">Ban</ion-button>
+            </ion-buttons>
+
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-col>
+  </ion-grid>
 </ion-content>

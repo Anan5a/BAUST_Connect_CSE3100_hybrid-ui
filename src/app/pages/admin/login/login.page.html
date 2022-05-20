@@ -12,8 +12,31 @@
     <ion-row>
       <ion-col size-lg="4" size-md="3" size-xs="12"></ion-col>
       <ion-col class="">
-        <h1 class="white" ion-text>Login</h1>
+        <h1 class="white" ion-text>Admin Login</h1>
         <p class="white" ion-text>Login to your account</p>
+        <form (ngSubmit)="login()" [formGroup]="credentials">
+          <div class="input-group">
+            <ion-item>
+              <ion-input formControlName="emailorid" placeholder="Admin ID" type="text"></ion-input>
+            </ion-item>
+            <div *ngIf="(emailorid?.dirty || emailorid?.touched) && emailorid?.errors" class="errors">
+              <span *ngIf="emailorid?.errors?.required">This field is required</span>
+              <span *ngIf="emailorid?.errors?.emailorid">The input is invalid</span>
+            </div>
+            <ion-item>
+              <ion-input formControlName="password" placeholder="Password" type="password"></ion-input>
+            </ion-item>
+            <div *ngIf="(password?.dirty || password?.touched) && password.errors" class="errors">
+              <span *ngIf="password?.errors?.required">Password is required</span>
+              <span *ngIf="password?.errors?.minlength">Password needs to be 8 characters</span>
+            </div>
+          </div>
+          <!-- TODO: Add captcha -->
+          <ion-button [disabled]="!credentials.valid" expand="block" type="submit">Log in</ion-button>
+
+          <ion-text color="light">Forgot password? Contact dev. team</ion-text>
+
+        </form>
       </ion-col>
 
     </ion-row>

@@ -17,12 +17,30 @@ export class DepartmentService {
     this.completePath = this.apiRoot + this.path
   }
 
-  getDepartments() {
+  getDepartments(id=null) {
+    if (id){
+      return this.httpClient.get(this.completePath+'/'+id).pipe(
+        //tap(department=>console.log(department)),
+        catchError(this.httpconfig.handleError<DataDepartment[]>('Get '+id+' departments'))
+      );
+    }
     return this.httpClient.get<{ data: DataDepartment[] }>(this.completePath).pipe(
       //tap(department=>console.log(department)),
       map((_) => _.data),
       catchError(this.httpconfig.handleError<DataDepartment[]>('Get all departments'))
     );
+  }
+  createDepartment(value){
+    return this.httpClient.post(this.completePath, value)
+      .pipe(
+        catchError(this.httpconfig.handleError<any>('Department create error occurred'))
+      );
+  }
+  updateDepartment(value,id){
+    return this.httpClient.patch(this.completePath+'/'+id, value)
+      .pipe(
+        catchError(this.httpconfig.handleError<any>('Department update error occurred'))
+      );
   }
 
 }

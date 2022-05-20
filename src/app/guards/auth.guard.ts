@@ -20,7 +20,7 @@ export class AuthGuard implements CanLoad {
       if (ok === 'true') {
         return true
       }
-      this.router.navigate(['login'], {queryParams:{returnTo:route.path},replaceUrl: true})
+      this.router.navigate(['/login'], {queryParams:{returnTo:segments.join('/')},replaceUrl: true})
       return false
     })
   }

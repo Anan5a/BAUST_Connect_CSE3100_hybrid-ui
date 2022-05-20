@@ -14,8 +14,9 @@
       <ion-content>
         <ion-list id="inbox-list">
           <ion-list-header *ngIf="student?.student_id">{{ student?.full_name }}</ion-list-header>
+          <ion-list-header *ngIf="student?.uni_per_id">{{ student?.full_name }}</ion-list-header>
           <ion-note *ngIf="student?.student_id">{{ student?.student_id }}</ion-note>
-
+          <ion-note *ngIf="student?.uni_per_id"> {{ student?.uni_per_id }} | {{student?.level}}</ion-note>
           <ion-menu-toggle *ngFor="let p of appPages; let i = index" autoHide="false">
             <ion-item [routerLink]="[p.url]" detail="false" lines="none" routerDirection="root"
                       routerLinkActive="selected">

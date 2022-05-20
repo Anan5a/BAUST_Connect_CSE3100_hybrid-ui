@@ -32,11 +32,11 @@
             </div>
           </div>
           <!-- TODO: Add captcha -->
-          <ion-button [disabled]="!credentials.valid" expand="block" type="submit">Log in</ion-button>
+          <ion-button [disabled]="!credentials.valid || force_disable" expand="block" type="submit">Log in</ion-button>
 
-          <ion-text color="light">Not yet a member? Contact your department.
-          </ion-text>
-
+          <ion-text color="light">Not yet a member? Contact your department.</ion-text>
+          <br>
+          <ion-text color="light">Forgot password? Contact your department</ion-text>
         </form>
       </ion-col>
 

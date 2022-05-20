@@ -23,10 +23,11 @@ export class AuthenticationService {
     this.completePath = this.apiRoot + this.path
   }
 
-  login(user) {
-    return this.httpClient.post(this.apiRoot + 'student/login', user)
+  login(user, admin = false) {
+    let rpath = admin ? "admin" : "student"
+    return this.httpClient.post(this.apiRoot + rpath + '/login', user)
       .pipe(
-        catchError(this.httpconfig.handleError<any>('Login error occurred'))
+        catchError(this.httpconfig.handleError<any>(rpath + ' Login error occurred'))
       );
   }
 
@@ -37,8 +38,9 @@ export class AuthenticationService {
       );
   }
 
-  isLoggedIn() {
-    return this.storageService.get('loggedIn')
+  isLoggedIn(admin = false) {
+    let admint = admin ? "Admin" : ''
+    return this.storageService.get('loggedIn' + admint)
 
   }
 
@@ -46,11 +48,13 @@ export class AuthenticationService {
     return this.storageService.get('userProfile')
   }
 
-  logout() {
-    this.storageService.remove('loggedIn')
+  logout(admin = false) {
+    let rpath = admin ? "admin" : "student"
+
+    this.storageService.remove('loggedIn' + (admin ? "Admin" : ''))
     this.storageService.remove('userProfile')
 
-    this.httpClient.post<[]>(this.apiRoot + 'student/logout', {})
+    this.httpClient.post<[]>(this.apiRoot + rpath + '/logout', {})
       .pipe(
         catchError(this.httpconfig.handleError<any>('logout error occurred'))
       )
@@ -58,8 +62,9 @@ export class AuthenticationService {
         this.loaderService.showToast(ok.message)
       });
   }
-  getProfileFromServer(id){
-    return this.httpClient.get<[]>(this.apiRoot + 'student/'+id)
+
+  getProfileFromServer(id) {
+    return this.httpClient.get<[]>(this.apiRoot + 'student/' + id)
       .pipe(
         catchError(this.httpconfig.handleError<any>('get profile error occurred'))
       )

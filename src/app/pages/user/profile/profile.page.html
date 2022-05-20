@@ -28,26 +28,7 @@
       </ion-card>
     </ion-col>
     <ion-col size-lg="8" size-md="8" size-sm="8" size-xl="8" size-xs="12">
-      <ion-list>
-        <ion-item>
-          address 1
-          <ion-button>
-            <ion-icon ios="create-outline" md="create-sharp" name="create-sharp"></ion-icon>
-          </ion-button>
-        </ion-item>
-        <ion-item>
-          address 1
-          <ion-button>
-            <ion-icon ios="create-outline" md="create-sharp" name="create-sharp"></ion-icon>
-          </ion-button>
-        </ion-item>
-        <ion-item>
-          address 1
-          <ion-button>
-            <ion-icon ios="create-outline" md="create-sharp" name="create-sharp"></ion-icon>
-          </ion-button>
-        </ion-item>
-      </ion-list>
+      <app-profile-item [contacts]="contacts"></app-profile-item>
     </ion-col>
   </ion-row>
 </ion-content>

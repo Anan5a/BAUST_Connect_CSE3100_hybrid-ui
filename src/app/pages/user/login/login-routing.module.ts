@@ -7,11 +7,13 @@ const routes: Routes = [
   {
     path: '',
     component: LoginPage,
-  }, {
-    path: 'logout',
-    component: LoginPage,
-
-  }
+    children:[
+      {
+        path: 'logout',
+        component: LoginPage,
+      }
+    ]
+  },
 ];
 
 @NgModule({

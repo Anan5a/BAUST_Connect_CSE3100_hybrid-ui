@@ -12,8 +12,7 @@ export class UnauthenticatedGuard implements CanLoad {
 
   canLoad(route: Route, segments: UrlSegment[]): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     return this.authService.isLoggedIn().then(ok => {
-      return ok !== 'true';
+      return ok !== 'true'
     })
   }
-
 }

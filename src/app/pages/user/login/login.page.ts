@@ -13,7 +13,7 @@ import {DataStudent} from "../../../dataclass/DataStudent";
 })
 export class LoginPage implements OnInit {
   credentials: FormGroup = new FormGroup({})
-
+  force_disable: boolean = false;
   constructor(
     private fb: FormBuilder,
     private authService: AuthenticationService,
@@ -26,6 +26,7 @@ export class LoginPage implements OnInit {
   }
 
   // Easy access for form fields
+
   get emailorid() {
     return this.credentials.get('emailorid');
   }
@@ -36,10 +37,7 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {
     const isLoggedIn = this.authService.isLoggedIn()
-    isLoggedIn.then((n) => {
-      if (n === 'true')
-        this.router.navigateByUrl(this.activeRoute.snapshot.queryParams['redirectTo'] || '/profile', {replaceUrl: true})
-    })
+
     /**
      * logout module
      */
@@ -56,6 +54,11 @@ export class LoginPage implements OnInit {
       })
     }
 
+    isLoggedIn.then((n) => {
+      if (n === 'true')
+        this.router.navigateByUrl(this.activeRoute.snapshot.queryParams['returnTo'] || '/profile', {replaceUrl: true})
+    })
+
     this.credentials = this.fb.group({
       emailorid: ['', [Validators.required, Validators.minLength(9), Validators.maxLength(9)]],// Validators.email
       password: ['', [Validators.required, Validators.minLength(8)]],
@@ -63,15 +66,17 @@ export class LoginPage implements OnInit {
   }
 
   async login() {
+    this.force_disable = true
     this.authService.login(this.credentials.value).subscribe((f) => {
       if (f) {
         this.storageService.set('loggedIn', 'true')
-        this.router.navigateByUrl(this.activeRoute.snapshot.queryParams['redirectTo']||'/profile', {replaceUrl: true});
+        this.router.navigateByUrl(this.activeRoute.snapshot.queryParams['returnTo']||'/profile', {replaceUrl: true});
         this.events.publishEvent({'update_menu': true})
         this.events.publishEvent({'update_profile': f.data})
         this.storageService.set('userProfile', f.data)
       }
     })
+    this.force_disable = false
   }
 
 }

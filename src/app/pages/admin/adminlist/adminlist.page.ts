@@ -4,7 +4,7 @@ import {LoaderService} from "../../../services/loader.service";
 import {DomSanitizer} from "@angular/platform-browser";
 
 @Component({
-  selector: 'app-adminlist',
+  selector: 'app-admin-list',
   templateUrl: './adminlist.page.html',
   styleUrls: ['./adminlist.page.scss'],
 })
@@ -26,9 +26,9 @@ export class AdminlistPage implements OnInit {
     this.adminService.adminList(url).subscribe(f=>{
       if (f && f.data){
         this.fullBody = f
-      }else{
+      }/*else{
         this.loaderService.showToast("Failed to load admins!", "error")
-      }
+      }*/
     })
   }
 

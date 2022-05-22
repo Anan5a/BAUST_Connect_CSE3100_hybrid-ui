@@ -5,7 +5,7 @@ import {LoaderService} from "../../../services/loader.service";
 import {Router} from "@angular/router";
 
 @Component({
-  selector: 'app-department',
+  selector: 'app-add-department',
   templateUrl: './add-department.page.html',
   styleUrls: ['./add-department.page.scss'],
 })
@@ -51,8 +51,6 @@ export class AddDepartmentPage implements OnInit {
     })
   }
   createOrUpdateDepartment() {
-
-
     if (this.external_data != null){
       this.UpdateDepartment()
     }else {

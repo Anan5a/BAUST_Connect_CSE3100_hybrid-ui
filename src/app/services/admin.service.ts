@@ -41,7 +41,10 @@ export class AdminService {
 
   }
   adminCreate(data){
-
+    return this.httpClient.post(this.apiRoot +  this.path, data)
+      .pipe(
+        catchError(this.httpconfig.handleError<any>('create admin error occurred'))
+      )
   }
 
   adminStudentList(deptID){

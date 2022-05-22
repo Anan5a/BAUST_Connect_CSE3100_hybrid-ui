@@ -1,0 +1,78 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>signup</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size-lg="4" size-md="3" size-xs="12"></ion-col>
+      <ion-col class="">
+        <h1 class="white" ion-text>New Admin</h1>
+        <p class="white" ion-text>Create new admin or mod. account</p>
+        <form (ngSubmit)="createAdmin()" [formGroup]="credentials">
+          <div class="input-group">
+            <!-- student id -->
+            <ion-item>
+              <ion-input formControlName="uni_per_id" placeholder="Personal ID" type="text"></ion-input>
+            </ion-item>
+            <div *ngIf="(uni_per_id.dirty || uni_per_id.touched) && uni_per_id.errors" class="errors">
+              <span *ngIf="uni_per_id.errors?.required">Enter your full ID</span>
+              <span *ngIf="uni_per_id.errors?.uni_per_id">The input is invalid</span>
+            </div>
+
+            <!-- Full name -->
+            <ion-item>
+              <ion-input formControlName="full_name" placeholder="Full Name" type="text"></ion-input>
+            </ion-item>
+            <div *ngIf="(full_name.dirty || full_name.touched) && full_name.errors" class="errors">
+              <span *ngIf="full_name.errors?.required">Enter your full name</span>
+              <span *ngIf="full_name.errors?.full_name">The input is invalid</span>
+            </div>
+
+            <!-- level -->
+            <ion-item>
+              <ion-label>Level</ion-label>
+              <ion-select formControlName="level" name="level">
+                <ion-select-option value="S">[S]uper Admin</ion-select-option>
+                <ion-select-option value="M">[M]oderator</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <!-- email -->
+            <ion-item>
+              <ion-input formControlName="email" placeholder="Email" type="text"></ion-input>
+            </ion-item>
+            <div *ngIf="(email.dirty || email.touched) && email.errors" class="errors">
+              <span *ngIf="email.errors?.required">Email address is required</span>
+              <span *ngIf="email.errors?.email">The email is invalid</span>
+            </div>
+            <!-- password -->
+            <ion-item>
+              <ion-input formControlName="password" placeholder="Password" type="password"></ion-input>
+            </ion-item>
+            <div *ngIf="(password.dirty || password.touched) && password.errors" class="errors">
+              <span *ngIf="password.errors?.required">Password is required</span>
+              <span *ngIf="password.errors?.minlength">Password needs to be 8 characters</span>
+            </div>
+            <!-- confirm password -->
+            <ion-item>
+              <ion-input formControlName="c_password" placeholder="Confirm Password" type="password"></ion-input>
+            </ion-item>
+            <div *ngIf="(c_password.dirty || c_password.touched) && c_password.errors" class="errors">
+              <span *ngIf="c_password.errors?.required">Confirm Password is required</span>
+              <br>
+              <span *ngIf="credentials.hasError('notSame')">Confirm password doesn't match</span>
+            </div>
+          </div>
+
+          <ion-button [disabled]="!credentials.valid || force_disable" expand="block" type="submit">Create Admin</ion-button>
+
+        </form>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

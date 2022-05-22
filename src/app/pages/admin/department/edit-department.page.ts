@@ -5,7 +5,7 @@ import {LoaderService} from "../../../services/loader.service";
 import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
-  selector: 'app-department',
+  selector: 'app-edit-department',
   templateUrl: './edit-department.page.html',
   styleUrls: ['./edit-department.page.scss'],
 })

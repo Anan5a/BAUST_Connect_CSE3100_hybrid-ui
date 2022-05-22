@@ -10,12 +10,13 @@ import {
 } from '@angular/router';
 import { Observable } from 'rxjs';
 import {AuthenticationService} from "../services/authentication.service";
+import {LoaderService} from "../services/loader.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdminGuard implements CanLoad {
-  constructor(private authService: AuthenticationService, private router: Router) {
+  constructor(private authService: AuthenticationService, private router: Router,private loaderService:LoaderService) {
   }
 
   canLoad(
@@ -26,12 +27,17 @@ export class AdminGuard implements CanLoad {
 
     return this.authService.isLoggedIn(true).then(ok => {
       if (ok === 'true') {
-        if (segments.join('/').match(/admin\/list/)){
+        if (
+          segments.join('/').match(/admin\/list/)||
+          segments.join('/').match(/admin\/department\/add/)
+        ){
           //check if S level
           return this.authService.getProfile().then(f=>{
             if(f.level === "S")
               return true
             else
+              this.loaderService.showToast("Unauthorized", "danger", 3000)
+            this.router.navigateByUrl("/admin/dashboard")
               return false
           })
         }

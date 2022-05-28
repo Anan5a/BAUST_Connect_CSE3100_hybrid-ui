@@ -18,7 +18,17 @@
           <ion-note *ngIf="student?.student_id">{{ student?.student_id }}</ion-note>
           <ion-note *ngIf="student?.uni_per_id"> {{ student?.uni_per_id }} | {{student?.level}}</ion-note>
           <ion-menu-toggle *ngFor="let p of appPages; let i = index" autoHide="false">
-            <ion-item [routerLink]="[p.url]" detail="false" lines="none" routerDirection="root"
+            <ion-item *ngIf="p.title == 'Logout' && student?.level != null" (click)="logout(true)" [routerLink]="[p.url]" detail="false" lines="none" routerDirection="root"
+                      routerLinkActive="selected">
+              <ion-icon [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'" slot="start"></ion-icon>
+              <ion-label>{{ p.title }}</ion-label>
+            </ion-item>
+            <ion-item *ngIf="p.title == 'Logout' && student?.level == null" (click)="logout()" [routerLink]="[p.url]" detail="false" lines="none" routerDirection="root"
+                      routerLinkActive="selected">
+              <ion-icon [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'" slot="start"></ion-icon>
+              <ion-label>{{ p.title }}</ion-label>
+            </ion-item>
+            <ion-item *ngIf="p.title != 'Logout'" [routerLink]="[p.url]" detail="false" lines="none" routerDirection="root"
                       routerLinkActive="selected">
               <ion-icon [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'" slot="start"></ion-icon>
               <ion-label>{{ p.title }}</ion-label>

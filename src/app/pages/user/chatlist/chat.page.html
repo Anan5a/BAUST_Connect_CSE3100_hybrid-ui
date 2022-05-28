@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>to: {{receiver?.full_name}}[{{receiver?.student_id}}]</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size-lg="4" size-md="3" size-xs="12"></ion-col>
+      <ion-col>
+        <!--<cdk-virtual-scroll-viewport itemSize="25">-->
+        <ion-list>
+          <ion-item *ngFor="let msg of messages">
+            <ion-label *ngIf="msg.from == from.id" class="ion-text-end">{{msg?.content}}</ion-label>
+            <ion-label *ngIf="msg.from == receiver.id" class="ion-text-start">{{msg?.content}}</ion-label>
+          </ion-item>
+        </ion-list>
+        <!--</cdk-virtual-scroll-viewport>-->
+
+        <!--<form (ngSubmit)="send()" [formGroup]="message_box">
+          <ion-item>
+            <ion-textarea formControlName="content" placeholder="Type message..." type="text"
+                          auto-grow="true"></ion-textarea>
+            <ion-button [disabled]="!message_box.valid" type="submit">Send</ion-button>
+          </ion-item>
+        </form>-->
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+</ion-content>
+<ion-footer>
+  <ion-grid>
+    <!--<ion-toolbar>-->
+
+      <ion-row>
+        <ion-col size-lg="4" size-md="3" size-xs="12"></ion-col>
+        <ion-col>
+          <form (ngSubmit)="send()" [formGroup]="message_box">
+            <ion-item>
+              <ion-textarea formControlName="content" placeholder="Type message..." type="text"
+                            auto-grow="true"></ion-textarea>
+              <ion-button [disabled]="!message_box.valid" type="submit">Send <ion-icon name="send"></ion-icon></ion-button>
+            </ion-item>
+          </form>
+        </ion-col>
+      </ion-row>
+    <!--</ion-toolbar>-->
+  </ion-grid>
+</ion-footer>

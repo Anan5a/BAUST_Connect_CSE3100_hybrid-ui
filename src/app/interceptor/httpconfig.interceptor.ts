@@ -30,7 +30,11 @@ export class HttpConfigInterceptor implements HttpInterceptor {
 
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    this.loaderService.showLoader()
+    if (!request.url.includes('get')){
+      //console.log("skip loading")
+      this.loaderService.showLoader()
+    }
+
 
     return from(this.handle(request, next)).pipe(
       map((event: HttpEvent<any>) => {
@@ -68,7 +72,7 @@ export class HttpConfigInterceptor implements HttpInterceptor {
   async csrf_token(force = false) {
     if (force) {
       this.load_csrf().subscribe((response) => {
-        console.log('from server...')
+        //console.log('from server...')
         //@ts-ignore
         if (response.csrf != null) {
           //@ts-ignore
@@ -82,10 +86,10 @@ export class HttpConfigInterceptor implements HttpInterceptor {
 
     }
     this.token = await this.storageService.get('csrf_token');
-    console.log(this.token)
+    //console.log(this.token)
     if (!this.token) {
       this.load_csrf().subscribe((response) => {
-        console.log('from server...')
+        //console.log('from server...')
         //@ts-ignore
         if (response.csrf != null) {
           //@ts-ignore
@@ -100,6 +104,7 @@ export class HttpConfigInterceptor implements HttpInterceptor {
   }
 
   public handleError<T>(operation: string, result?: T) {
+    this.loaderService.hideLoader()
     return (error: any): Observable<T> => {
       console.log(`${operation} failed: ${error.message}`);
       return of(result as T);

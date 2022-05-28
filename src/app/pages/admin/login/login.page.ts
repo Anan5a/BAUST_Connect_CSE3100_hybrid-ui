@@ -39,8 +39,9 @@ export class LoginPage implements OnInit {
     /**
      * logout module
      */
+/*
 
-    if (this.router.url.match(/admin\/login\/logout/)) {
+    if (this.router.url.match(/logout/)) {
       this.authService.logout(true)
       this.storageService.remove('userProfile').then(ok => {
         this.events.publishEvent({'update_menu': true})
@@ -50,8 +51,8 @@ export class LoginPage implements OnInit {
       }, err => {
 
       })
-
     }
+*/
     isLoggedIn.then((n) => {
       if (n === 'true')
         this.router.navigateByUrl(this.activeRoute.snapshot.queryParams['returnTo'] || '/admin/dashboard', {replaceUrl: true})

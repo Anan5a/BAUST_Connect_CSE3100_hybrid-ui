@@ -60,4 +60,10 @@ export class AdminService {
         catchError(this.httpconfig.handleError<any>('get admin list error occurred'))
       )
   }
+  summary(){
+    return this.httpClient.post(this.apiRoot +  this.path + '/summary', {})
+      .pipe(
+        catchError(this.httpconfig.handleError<any>('admin summary error occurred'))
+      )
+  }
 }

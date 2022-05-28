@@ -3,10 +3,34 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>message list</ion-title>
+    <ion-title>messages</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <h1>TODO: User chat list</h1>
+  <ion-grid>
+    <ion-row>
+      <ion-col size-lg="4" size-md="4" size-sm="4" size-xl="4" size-xs="12">
+        <ion-list *ngIf="chats?.length < 1">
+          <ion-item>
+            <h1>NO ITEM FOUND</h1>
+          </ion-item>
+        </ion-list>
+
+        <ion-list>
+          <ion-item *ngFor="let item of chats">
+            <ion-avatar>
+              <img src="../../../../assets/shapes.svg">
+            </ion-avatar>
+            <ion-label routerLink="/messages/{{item?.receiver?.id}}">
+              <h2>{{ item?.receiver?.full_name }}</h2>
+              <h3 style="color: darkgray">{{ item?.content }}</h3>
+              <p style="color: lightgray">{{ date2ago(item?.created_at) }}</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

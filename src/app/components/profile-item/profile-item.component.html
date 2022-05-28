@@ -1,12 +1,15 @@
+<ion-list *ngIf="contacts?.length < 1">
+  <ion-item>
+    <h1>NO ITEM FOUND</h1>
+  </ion-item>
+</ion-list>
+
 <ion-list *ngFor="let item of contacts">
   <ion-item>
-    <ion-avatar slot="start">
-      <img src="./avatar-han.png">
-    </ion-avatar>
     <ion-label>
-      <h2>{{ item.channel_data }}</h2>
-      <h3>Position (Year-Year)</h3>
-      <p>Description</p>
+      <h2><ion-icon name="business"></ion-icon> {{ item.channel_data?.place_name }}</h2>
+      <h3>{{ item.channel_data?.position }} ({{ date2str(item.channel_data?.enroll_start) }} - {{ date2str(item.channel_data?.enroll_end) }})</h3>
+      <p>{{ item.channel_data?.web_link }}</p>
     </ion-label>
   </ion-item>
 </ion-list>

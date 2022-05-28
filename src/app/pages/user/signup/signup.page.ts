@@ -6,6 +6,7 @@ import {Router} from "@angular/router";
 import {DataDepartment} from "../../../dataclass/DataDepartment";
 import {DepartmentService} from "../../../services/department.service";
 import {LoaderService} from "../../../services/loader.service";
+import {DataStudent} from "../../../dataclass/DataStudent";
 
 @Component({
   selector: 'app-signup',

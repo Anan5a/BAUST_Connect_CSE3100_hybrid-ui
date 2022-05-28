@@ -3,10 +3,98 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>homepage</ion-title>
+    <ion-title>home</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <h1>TODO: populate homepage with ???</h1>
+  <ion-grid>
+    <ion-row>
+      <ion-col size-lg="4" size-md="3" size-xs="12"></ion-col>
+      <ion-col>
+        <form (ngSubmit)="search()" [formGroup]="search_data">
+          <h1 class="ion-color-dark" ion-text>Find people</h1>
+          <p class="ion-color-dark" ion-text>Find your classmates, batch mates and seniors using here</p>
+
+          <ion-row>
+            <ion-col>
+              <div class="input-group">
+
+                <ion-item>
+                  <ion-label>Keyword</ion-label>
+                  <ion-input type="text" formControlName="query" placeholder="Name/Student ID"></ion-input>
+                </ion-item>
+                <div *ngIf="(query?.dirty || query?.touched) && query?.errors" class="errors">
+                  <span *ngIf="query?.errors?.required">The keyword is required</span>
+                  <span *ngIf="query?.errors?.query">The input is invalid</span>
+                </div>
+              </div>
+            </ion-col>
+            <!--<ion-col>
+              <div class="input-group">
+                <ion-item>
+                  <ion-label>District</ion-label>
+                  <ion-select formControlName="district" name="district">
+                    <ion-select-option *ngFor="let dis of districts" [value]="dis.name">{{ dis.name}}</ion-select-option>
+                  </ion-select>
+                </ion-item>
+                <div *ngIf="(district?.dirty || district?.touched) && district?.errors" class="errors">
+                  <span *ngIf="district?.errors?.required">This field is required</span>
+                  <span *ngIf="district?.errors?.district">The input is invalid</span>
+                </div>
+              </div>
+            </ion-col>-->
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <div class="input-group">
+                <ion-item>
+                  <ion-label>Department</ion-label>
+                  <ion-select formControlName="dept" name="dept">
+                    <ion-select-option value="all">All</ion-select-option>
+                    <ion-select-option *ngFor="let department of departments" [value]="department.id">{{department.name_short}} - {{ department.name}} </ion-select-option>
+                  </ion-select>
+                </ion-item>
+                <div *ngIf="(dept?.dirty || dept?.touched) && dept?.errors" class="errors">
+                  <span *ngIf="dept?.errors?.required">Select this field</span>
+                  <span *ngIf="dept?.errors?.dept">The input is invalid</span>
+                </div>
+              </div>
+            </ion-col>
+            <ion-col>
+              <div class="input-group">
+                <ion-item>
+                  <ion-label>Batch</ion-label>
+                  <ion-input type="text" formControlName="batch" placeholder="Eg. 10"></ion-input>
+                </ion-item>
+                <div *ngIf="(batch?.dirty || query?.touched) && batch?.errors" class="errors">
+                  <span *ngIf="batch?.errors?.required">The keyword is required</span>
+                  <span *ngIf="batch?.errors?.batch">The input is invalid</span>
+                </div>
+              </div>
+            </ion-col>
+          </ion-row>
+          <!-- TODO: Add captcha -->
+          <ion-button [disabled]="!search_data.valid || force_disable" expand="block" type="submit"><ion-icon name="search"></ion-icon> Find</ion-button>
+        </form>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <!--Result window-->
+  <ion-grid>
+    <ion-row>
+      <ion-col *ngFor="let student of search_results">
+          <ion-item>
+            <ion-avatar>
+              <img src="../../../../assets/shapes.svg">
+            </ion-avatar>
+            <ion-label routerLink="/profile/view/uni-{{student?.student_id}}">
+              <h2>{{ student?.full_name }}</h2>
+              <h3>{{ student?.student_id }} - {{student?.department?.name_short}}</h3>
+              <p>{{ student?.batch }} batch</p>
+            </ion-label>
+          </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

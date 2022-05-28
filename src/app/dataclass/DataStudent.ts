@@ -6,5 +6,14 @@ export class DataStudent {
   batch?: string | number;
   email?: string | null;
   department_id?: string;
+  department?: {
+    name_short:string
+  };
   level?:string;
+  id:number;
+  current_address: {
+    division:string;
+    district:string;
+    sub_district:string;
+  } | null;
 }

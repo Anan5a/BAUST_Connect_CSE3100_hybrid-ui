@@ -59,7 +59,7 @@ export class AuthenticationService {
         catchError(this.httpconfig.handleError<any>('logout error occurred'))
       )
       .subscribe(ok => {
-        this.loaderService.showToast(ok.message)
+        this.loaderService.showToast(ok.message||"Logout successful!", "success")
       });
   }
 
@@ -69,4 +69,19 @@ export class AuthenticationService {
         catchError(this.httpconfig.handleError<any>('get profile error occurred'))
       )
   }
+  addOrUpdateContact(body,id = null){
+    return this.httpClient.post<[]>(this.apiRoot + 'contact', body)
+      .pipe(
+        catchError(this.httpconfig.handleError<any>('store contact error occurred'))
+      )
+  }
+  addOrUpdateAddress(body,id = null){
+    return this.httpClient.post<[]>(this.apiRoot + 'address', body)
+      .pipe(
+        catchError(this.httpconfig.handleError<any>('store address error occurred'))
+      )
+
+  }
+
+
 }

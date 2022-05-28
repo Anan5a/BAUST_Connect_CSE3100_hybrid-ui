@@ -1,0 +1,74 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>add address</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size-lg="4" size-md="3" size-xs="12"></ion-col>
+      <ion-col class="">
+        <h1 class="white" ion-text>Add address</h1>
+        <p class="white" ion-text>Add your home address</p>
+        <form (ngSubmit)="addAddress()" [formGroup]="credentials">
+          <ion-row>
+            <ion-col>
+              <div class="input-group">
+                <ion-item>
+                  <ion-label>Division</ion-label>
+                  <ion-select formControlName="division" name="division">
+                    <ion-select-option *ngFor="let div of divisions" [value]="div.name">{{ div.name}}</ion-select-option>
+                  </ion-select>
+                </ion-item>
+                <div *ngIf="(division?.dirty || division?.touched) && division?.errors" class="errors">
+                  <span *ngIf="division?.errors?.required">This field is required</span>
+                  <span *ngIf="division?.errors?.division">The input is invalid</span>
+                </div>
+              </div>
+            </ion-col>
+            <ion-col>
+              <div class="input-group">
+                <ion-item>
+                  <ion-label>District</ion-label>
+                  <ion-select formControlName="district" name="district">
+                    <ion-select-option *ngFor="let dis of districts" [value]="dis.name">{{ dis.name}}</ion-select-option>
+                  </ion-select>
+                </ion-item>
+                <div *ngIf="(district?.dirty || district?.touched) && district?.errors" class="errors">
+                  <span *ngIf="district?.errors?.required">This field is required</span>
+                  <span *ngIf="district?.errors?.district">The input is invalid</span>
+                </div>
+              </div>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <div class="input-group">
+                <ion-item>
+                  <ion-label>Sub District</ion-label>
+                  <ion-select formControlName="sub_district" name="sub_district">
+                    <ion-select-option *ngFor="let sdis of sub_districts" [value]="sdis.name">{{ sdis.name}}</ion-select-option>
+                  </ion-select>
+                </ion-item>
+                <div *ngIf="(sub_district?.dirty || sub_district?.touched) && sub_district?.errors" class="errors">
+                  <span *ngIf="sub_district?.errors?.required">This field is required</span>
+                  <span *ngIf="sub_district?.errors?.sub_district">The input is invalid</span>
+                </div>
+              </div>
+            </ion-col>
+            <ion-col>
+            </ion-col>
+          </ion-row>
+          <!-- TODO: Add captcha -->
+          <ion-button [disabled]="!credentials.valid || force_disable" expand="block" type="submit">Submit</ion-button>
+        </form>
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

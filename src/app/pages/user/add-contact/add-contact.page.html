@@ -1,0 +1,109 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>add contact data</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size-lg="4" size-md="3" size-xs="12"></ion-col>
+      <ion-col class="">
+        <h1 class="white" ion-text>Add information</h1>
+        <p class="white" ion-text>Add your contact/job/academic information</p>
+        <form (ngSubmit)="addContact()" [formGroup]="credentials">
+          <ion-row>
+            <ion-col>
+              <div class="input-group">
+                <ion-item>
+                  <ion-label>Type</ion-label>
+                  <ion-select formControlName="type" name="type">
+                    <ion-select-option value="ac">Academic</ion-select-option><!-- 1 -->
+                    <ion-select-option value="job">Job</ion-select-option><!-- 2 -->
+                  </ion-select>
+                </ion-item>
+                <div *ngIf="(type?.dirty || type?.touched) && type?.errors" class="errors">
+                  <span *ngIf="type?.errors?.required">This field is required</span>
+                  <span *ngIf="type?.errors?.type">The input is invalid</span>
+                </div>
+              </div>
+            </ion-col>
+            <ion-col>
+              <div class="input-group">
+                <ion-item>
+                  <ion-label>Position</ion-label>
+                  <ion-input formControlName="position" placeholder="Student/Programmer/Manager etc."
+                             type="text"></ion-input>
+                </ion-item>
+                <div *ngIf="(position?.dirty || position?.touched) && position.errors" class="errors">
+                  <span *ngIf="position?.errors?.required">Position is required</span>
+                  <span *ngIf="position?.errors?.minlength">Position needs to be 8 characters</span>
+                </div>
+              </div>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <div class="input-group">
+                <ion-item>
+                  <ion-label>Organisation name</ion-label>
+                  <ion-input formControlName="place_name" placeholder="XYZ Company/ABC School" type="text"></ion-input>
+                </ion-item>
+                <div *ngIf="(place_name?.dirty || place_name?.touched) && place_name.errors" class="errors">
+                  <span *ngIf="place_name?.errors?.required">Organisation is required</span>
+                </div>
+              </div>
+            </ion-col>
+            <ion-col>
+              <div class="input-group">
+                <ion-item>
+                  <ion-label>Website</ion-label>
+                  <ion-input formControlName="web_link" placeholder="Website of the organisation"
+                             type="text"></ion-input>
+                </ion-item>
+                <div *ngIf="(web_link?.dirty || web_link?.touched) && web_link.errors" class="errors">
+                  <span *ngIf="web_link?.errors?.required">Weblink is required</span>
+                  <span *ngIf="web_link?.errors?.weblink">Weblink is invalid</span>
+                </div>
+              </div>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <div class="input-group">
+                <ion-item>
+                  <ion-label>Enroll date</ion-label>
+                  <ion-datetime presentation="date" formControlName="enroll_start"></ion-datetime>
+                  <div *ngIf="(enroll_start?.dirty || enroll_start?.touched) && enroll_start.errors" class="errors">
+                    <span *ngIf="enroll_start?.errors?.enroll_start">Enroll start is required</span>
+                    <span *ngIf="enroll_start?.errors">Error</span>
+                  </div>
+                </ion-item>
+              </div>
+            </ion-col>
+            <ion-col>
+              <div class="input-group">
+                <ion-item>
+                  <ion-label>Enroll end</ion-label>
+                  <ion-datetime presentation="date" formControlName="enroll_end"></ion-datetime>
+                  <div *ngIf="(enroll_end?.dirty || enroll_end?.touched) && enroll_end.errors" class="errors">
+                    <span *ngIf="enroll_end?.errors?.required">Enroll end is required</span>
+                  </div>
+                </ion-item>
+              </div>
+            </ion-col>
+          </ion-row>
+
+
+          <!-- TODO: Add captcha -->
+          <ion-button [disabled]="!credentials.valid || force_disable" expand="block" type="submit">Submit</ion-button>
+        </form>
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

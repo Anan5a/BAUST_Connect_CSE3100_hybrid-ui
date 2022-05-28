@@ -14,8 +14,12 @@ export class ProfilePage implements OnInit {
 
   student: DataStudent = new DataStudent()
   contacts:DataContactItem[]
-
-  constructor(private router:Router,private route: ActivatedRoute, private authService: AuthenticationService, private loader: LoaderService) {
+  profile:DataStudent
+  id:number
+  constructor(private router:Router,private route: ActivatedRoute, private authService: AuthenticationService, public loader: LoaderService) {
+    authService.getProfile().then(profile=>{
+      this.profile = profile
+    })
   }
 
   ngOnInit() {
@@ -24,7 +28,7 @@ export class ProfilePage implements OnInit {
     if (routing)
       this.loadProfile(routing) //load from server
     else
-      this.loadProfile() //load from browser
+      this.loadProfile('me') //load from browser
   }
 
   loadProfile(id = null) {
@@ -33,7 +37,8 @@ export class ProfilePage implements OnInit {
       this.authService.getProfileFromServer(id).subscribe(f => {
         if (f.status == 'ok') {
           this.student = f.data.info
-          this.contacts = f.data.contacts
+          this.id = this.student.id
+          this.contacts = f.data.info.contacts
         }
         if (f.status == 'error') {
           this.loader.showToast("The profile not found!", "danger", 5000)

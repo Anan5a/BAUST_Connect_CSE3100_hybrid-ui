@@ -37,23 +37,6 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {
     const isLoggedIn = this.authService.isLoggedIn()
-
-    /**
-     * logout module
-     */
-    if (this.router.url.match(/\/logout/)) {
-      const profile = new DataStudent()
-      this.authService.logout()
-      this.storageService.remove('userProfile').then(ok => {
-        this.events.publishEvent({'update_menu': true})
-        this.events.publishEvent({'update_profile': profile})
-        this.router.navigateByUrl('/homepage', {replaceUrl: true})
-        console.log('logout ok')
-      }, err => {
-
-      })
-    }
-
     isLoggedIn.then((n) => {
       if (n === 'true')
         this.router.navigateByUrl(this.activeRoute.snapshot.queryParams['returnTo'] || '/profile', {replaceUrl: true})

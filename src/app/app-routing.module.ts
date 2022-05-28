@@ -39,6 +39,16 @@ const routes: Routes = [
     canLoad: [AuthGuard]
   },
   {
+    path: 'profile/contact/add',
+    loadChildren: () => import('./pages/user/add-contact/add-contact.module').then( m => m.AddContactPageModule),
+    canLoad: [AuthGuard]
+  },
+  {
+    path: 'profile/address/add',
+    loadChildren: () => import('./pages/user/add-address/add-address.module').then( m => m.AddAddressPageModule),
+    canLoad:[AuthGuard]
+  },
+  {
     path: 'messages',
     loadChildren: () => import('./pages/user/chatlist/chatlist.module').then(m => m.ChatlistPageModule),
     canLoad: [AuthGuard]
@@ -101,6 +111,7 @@ const routes: Routes = [
     path: '**',
     redirectTo: 'error404'
   },
+
 
 
 

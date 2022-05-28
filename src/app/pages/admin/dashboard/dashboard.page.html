@@ -10,7 +10,36 @@
 <ion-content>
   <ion-grid>
     <ion-row>
-      <h1>Dashboard content</h1>
+      <ion-col>
+        <ion-card href="/admin/department">
+          <ion-card-content>
+            <h1>
+              <!--<ion-icon name="people" md="people-sharp" ios="people-outline"></ion-icon>-->
+              Total <ion-text color="primary">{{summary?.student_count}}</ion-text> students
+            </h1>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col>
+        <ion-card href="/admin/list">
+          <ion-card-content>
+            <h1>
+              <!--<ion-icon name="people" md="people-sharp" ios="people-outline"></ion-icon>-->
+              Total <ion-text color="primary">{{summary?.admin_count}}</ion-text> admins
+            </h1>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col>
+        <ion-card href="/admin/department">
+          <ion-card-content>
+            <h1>
+              <!--<ion-icon name="people" md="people-sharp" ios="people-outline"></ion-icon>-->
+              Total <ion-text color="primary">{{summary?.dept_count}}</ion-text> departments
+            </h1>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>

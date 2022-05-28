@@ -1,16 +1,14 @@
-
 ion-content {
-  --padding-top: 10%;
-  //--padding-start: 10%;
+  --padding-top: 5%;
+  --padding-start: 0%;
   //--padding-end: 10%;
-  --background: url('../../../../assets/baust.jpg') 0 0/100% 100% no-repeat;
+  --background: url('https://images.unsplash.com/photo-1536431311719-398b6704d4cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1234&q=80') 0 0/100% 100% no-repeat;
 
 }
 
 form {
-  max-width: 500px;
+  max-width: 80%;
   align-items: center;
-  background: white;
 }
 
 .input-group {

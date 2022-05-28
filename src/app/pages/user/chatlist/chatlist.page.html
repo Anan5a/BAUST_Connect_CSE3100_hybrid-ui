@@ -22,8 +22,8 @@
             <ion-avatar>
               <img src="../../../../assets/shapes.svg">
             </ion-avatar>
-            <ion-label routerLink="/messages/{{item?.receiver?.id}}">
-              <h2>{{ item?.receiver?.full_name }}</h2>
+            <ion-label routerLink="/messages/{{item?.sender?.id}}">
+              <h2>{{ item?.sender?.full_name }}</h2>
               <h3 style="color: darkgray">{{ item?.content }}</h3>
               <p style="color: lightgray">{{ date2ago(item?.created_at) }}</p>
             </ion-label>

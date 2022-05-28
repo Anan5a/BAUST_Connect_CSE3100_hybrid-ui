@@ -62,6 +62,9 @@ export class HomepagePage implements OnInit {
       if (res && res.status == 'ok'){
         this.search_results = res.data.data
         this.full_response_body = res.data
+        if(res.data.total == 0){
+          this.loaderService.showToast("Nothing related found!", "warning")
+        }
       }
     })
   }

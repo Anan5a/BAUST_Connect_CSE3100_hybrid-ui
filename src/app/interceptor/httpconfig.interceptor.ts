@@ -46,7 +46,9 @@ export class HttpConfigInterceptor implements HttpInterceptor {
           this.csrf_token(true)
           this.loaderService.showToast("Try again", "warning")
         } else if ([403, 401, 422].includes(error.status)) {
-          this.loaderService.showToast(error.error.message, "danger")
+          if (error.status == 422 && !request.url.match('get')) {
+            this.loaderService.showToast(error.error.message, "danger")
+          }
         }
         else if(error.status == 404){
           this.loaderService.showToast(error.error.message||"Item not found", "danger", 5000)

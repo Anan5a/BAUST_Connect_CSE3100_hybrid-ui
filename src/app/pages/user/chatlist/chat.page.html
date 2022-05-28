@@ -44,7 +44,7 @@
             <ion-item>
               <ion-textarea formControlName="content" placeholder="Type message..." type="text"
                             auto-grow="true"></ion-textarea>
-              <ion-button [disabled]="!message_box.valid" type="submit">Send <ion-icon name="send"></ion-icon></ion-button>
+              <ion-button [disabled]="!message_box.valid || force_disable" type="submit">Send <ion-icon name="send"></ion-icon></ion-button>
             </ion-item>
           </form>
         </ion-col>

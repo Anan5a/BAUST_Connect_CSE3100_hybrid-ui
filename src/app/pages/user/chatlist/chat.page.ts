@@ -22,6 +22,7 @@ export class ChatPage implements OnInit, OnDestroy {
   message_box: FormGroup;
   rxjs_interval: any
   private stopPolling = new Subject();
+  force_disable:boolean = false
 
   constructor(
     private authService: AuthenticationService,
@@ -33,9 +34,9 @@ export class ChatPage implements OnInit, OnDestroy {
   ) {
     /**
      * Periodic refresh to fetch new messages
-     * 3.2 sec
+     * 2 sec
      */
-    this.rxjs_interval = timer(1, 3200).pipe(
+    this.rxjs_interval = timer(1, 2000).pipe(
       //switchMap(() => this.receive("fetch msg")),
       retry(),
       share(),
@@ -69,15 +70,16 @@ export class ChatPage implements OnInit, OnDestroy {
 
   send() {
     //console.log(this.from,this.receiver)
-
+    this.force_disable = true
     this.chatService.send({to: this.receiver?.id, content: this.message_box.value?.content}).subscribe(ok => {
-      if (ok.status == 'ok') {
-
-        this.messages.push(ok.data)
+      if (ok && ok.status == 'ok') {
+        this.pushToList(ok.data,true)
+        //this.messages.push(ok.data)
         //console.log(this.messages)
         this.message_box.reset()
       }
     })
+    this.force_disable = false
   }
 
   receive(msg = null) {
@@ -86,12 +88,12 @@ export class ChatPage implements OnInit, OnDestroy {
 
     let _id = this.messages?.length > 0 ? this?.messages[this.messages?.length - 1]?.id : null;
     this.chatService.receive({to: this.receiver?.id, msg_id: _id}).subscribe(ok => {
-      if (ok.status == 'ok') {
+      if (ok && ok.status == 'ok') {
         for (let item of ok.data) {
           if (msg)
-            this.messages.push(item)
+            this.pushToList(item,true)
           else
-            this.messages.unshift(item)
+            this.pushToList(item,false)
         }
         //this.message_box.reset()
       }
@@ -106,5 +108,16 @@ export class ChatPage implements OnInit, OnDestroy {
   ngOnDestroy() {
     //console.log("stopping msg polling")
     this.stopPolling.next()
+  }
+  pushToList(item, end=false){
+    for (let msg of this.messages){
+      if (msg.id == item.id)
+        return
+    }
+    if (end){
+      this.messages.push(item)
+    }else {
+      this.messages.unshift(item)
+    }
   }
 }
